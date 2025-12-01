@@ -1,44 +1,57 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const Welcome: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-screen w-full bg-background-light dark:bg-background-dark max-w-md mx-auto p-4">
-      <div className="flex-grow flex flex-col items-center justify-center">
-        <div className="w-full max-w-sm px-4 mb-8">
-          <div className="aspect-square w-full rounded-3xl overflow-hidden shadow-2xl relative">
-             <img 
-               src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop" 
-               alt="Cooking Bowl" 
-               className="object-cover w-full h-full"
-             />
-             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-          </div>
-        </div>
-        
-        <h1 className="text-content-light dark:text-content-dark text-[32px] font-bold leading-tight text-center px-4 mb-3">
-          Welcome to Cookbook
-        </h1>
-        <p className="text-content-light/80 dark:text-content-dark/80 text-base text-center max-w-xs px-4">
-          Discover and share recipes from kitchens around the world.
-        </p>
+    <div className="relative flex flex-col h-full w-full">
+      {/* Immersive Background */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1000&auto=format&fit=crop" 
+          alt="Cooking Background" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10"></div>
       </div>
 
-      <div className="flex flex-col gap-3 pb-8 w-full px-4">
-        <button 
-          onClick={() => navigate('/home')}
-          className="w-full h-14 bg-primary rounded-xl text-content-light font-bold text-lg hover:bg-yellow-500 transition-colors"
-        >
-          Browse Recipes
-        </button>
-        <button 
-          onClick={() => navigate('/home')}
-          className="w-full h-14 bg-transparent border-2 border-primary/20 rounded-xl text-content-light dark:text-content-dark font-bold text-lg hover:bg-primary/5 transition-colors"
-        >
-          Log In or Create Account
-        </button>
+      {/* Content */}
+      <div className="relative z-10 flex flex-col h-full p-8">
+        <div className="flex-grow flex flex-col justify-end pb-12 animate-slide-up">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full w-fit mb-6 border border-white/10">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span className="text-white text-xs font-bold tracking-wide uppercase">AI Powered Kitchen</span>
+          </div>
+
+          <h1 className="text-white text-5xl font-bold leading-[1.1] mb-4 tracking-tight">
+            Cook <br />
+            <span className="text-primary">Smarter,</span> <br />
+            Eat Better.
+          </h1>
+          
+          <p className="text-gray-300 text-lg leading-relaxed max-w-xs mb-8">
+            Personalized recipes, AI generation, and a community of food lovers.
+          </p>
+
+          <div className="flex flex-col gap-4">
+            <button 
+              onClick={() => navigate('/home')}
+              className="group w-full h-16 bg-primary hover:bg-primary/90 rounded-2xl flex items-center justify-between px-6 text-white font-bold text-lg transition-all shadow-glow"
+            >
+              <span>Get Started</span>
+              <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            
+            <button 
+              onClick={() => navigate('/home')}
+              className="w-full h-16 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 rounded-2xl text-white font-bold text-lg transition-all"
+            >
+              Log In
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

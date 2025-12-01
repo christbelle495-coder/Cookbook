@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Settings } from 'lucide-react';
+import { ArrowLeft, Settings, Grid, PlayCircle } from 'lucide-react';
 
 const Profile: React.FC = () => {
   const navigate = useNavigate();
@@ -26,70 +26,79 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-full bg-background-light dark:bg-background-dark">
       {/* Top Bar */}
-      <div className="flex items-center justify-between px-4 py-3 sticky top-0 bg-background-light dark:bg-background-dark z-10">
-        <button onClick={() => navigate(-1)} className="text-content-light dark:text-content-dark">
+      <div className="flex items-center justify-between px-6 py-6">
+        <button onClick={() => navigate(-1)} className="text-content-light dark:text-content-dark hover:bg-gray-100 dark:hover:bg-white/10 p-2 -ml-2 rounded-full transition-colors">
           <ArrowLeft size={24} />
         </button>
-        <h2 className="text-lg font-bold text-content-light dark:text-content-dark">Profile</h2>
-        <button className="text-content-light dark:text-content-dark">
+        <h2 className="text-lg font-bold text-content-light dark:text-content-dark">My Profile</h2>
+        <button className="text-content-light dark:text-content-dark hover:bg-gray-100 dark:hover:bg-white/10 p-2 -mr-2 rounded-full transition-colors">
           <Settings size={24} />
         </button>
       </div>
 
       <div className="px-6 flex flex-col items-center pt-2">
          {/* Avatar */}
-         <div className="w-32 h-32 rounded-full p-1 border-2 border-primary mb-4">
-           <img src={user.avatar} alt={user.name} className="w-full h-full rounded-full object-cover" />
+         <div className="w-28 h-28 rounded-full p-1 border-2 border-primary mb-4 shadow-glow relative">
+           <img src={user.avatar} alt={user.name} className="w-full h-full rounded-full object-cover border-4 border-background-light dark:border-background-dark" />
          </div>
          
          {/* Info */}
          <h1 className="text-2xl font-bold text-content-light dark:text-content-dark mb-1">{user.name}</h1>
-         <p className="text-primary font-medium mb-3">{user.handle}</p>
-         <p className="text-center text-subtle-light dark:text-subtle-dark leading-relaxed max-w-xs mb-6">
+         <p className="text-primary font-bold mb-4">{user.handle}</p>
+         <p className="text-center text-subtle-light dark:text-subtle-dark leading-relaxed max-w-xs mb-8 text-sm">
            {user.bio}
          </p>
 
-         <button className="w-full max-w-xs py-2.5 rounded-xl bg-white dark:bg-[#2c2617] border border-border-light dark:border-border-dark font-bold text-content-light dark:text-content-dark hover:bg-gray-50 dark:hover:bg-[#362e1c] transition-colors mb-8">
-           Edit Profile
-         </button>
-
          {/* Stats */}
          <div className="flex w-full justify-between gap-4 mb-8">
-            <div className="flex-1 bg-white dark:bg-[#2c2617] rounded-xl border border-border-light dark:border-border-dark p-3 flex flex-col items-center">
+            <div className="flex-1 flex flex-col items-center">
                <span className="text-xl font-bold text-content-light dark:text-content-dark">{user.stats.recipes}</span>
-               <span className="text-xs text-subtle-light dark:text-subtle-dark uppercase tracking-wider font-semibold">Recipes</span>
+               <span className="text-xs text-subtle-light dark:text-subtle-dark font-medium">Recipes</span>
             </div>
-            <div className="flex-1 bg-white dark:bg-[#2c2617] rounded-xl border border-border-light dark:border-border-dark p-3 flex flex-col items-center">
+            <div className="w-[1px] bg-border-light dark:bg-border-dark h-8 self-center"></div>
+            <div className="flex-1 flex flex-col items-center">
                <span className="text-xl font-bold text-content-light dark:text-content-dark">{user.stats.followers}</span>
-               <span className="text-xs text-subtle-light dark:text-subtle-dark uppercase tracking-wider font-semibold">Followers</span>
+               <span className="text-xs text-subtle-light dark:text-subtle-dark font-medium">Followers</span>
             </div>
-            <div className="flex-1 bg-white dark:bg-[#2c2617] rounded-xl border border-border-light dark:border-border-dark p-3 flex flex-col items-center">
+            <div className="w-[1px] bg-border-light dark:bg-border-dark h-8 self-center"></div>
+            <div className="flex-1 flex flex-col items-center">
                <span className="text-xl font-bold text-content-light dark:text-content-dark">{user.stats.following}</span>
-               <span className="text-xs text-subtle-light dark:text-subtle-dark uppercase tracking-wider font-semibold">Following</span>
+               <span className="text-xs text-subtle-light dark:text-subtle-dark font-medium">Following</span>
             </div>
+         </div>
+         
+         <div className="w-full flex gap-3 mb-8">
+            <button className="flex-1 py-3 rounded-2xl bg-primary text-white font-bold shadow-glow hover:scale-[1.02] transition-all">
+                Edit Profile
+            </button>
+             <button className="py-3 px-4 rounded-2xl bg-gray-100 dark:bg-white/5 text-content-light dark:text-content-dark font-bold hover:bg-gray-200 transition-all">
+                Share
+            </button>
          </div>
       </div>
 
       {/* Tabs */}
-      <div className="sticky top-[56px] z-10 bg-background-light dark:bg-background-dark border-b border-border-light dark:border-border-dark">
-        <div className="flex">
-          <button className="flex-1 py-4 text-center border-b-2 border-primary font-bold text-content-light dark:text-content-dark">
-            Recipes
+      <div className="sticky top-0 z-20 bg-background-light dark:bg-background-dark">
+        <div className="flex px-6 border-b border-border-light dark:border-border-dark">
+          <button className="flex-1 py-4 flex justify-center items-center gap-2 border-b-[2px] border-primary text-primary transition-colors">
+            <Grid size={20} />
+            <span className="font-bold text-sm">Recipes</span>
           </button>
-          <button className="flex-1 py-4 text-center border-b-2 border-transparent font-medium text-subtle-light dark:text-subtle-dark">
-            Videos
+          <button className="flex-1 py-4 flex justify-center items-center gap-2 border-b-[2px] border-transparent text-subtle-light dark:text-subtle-dark hover:text-content-light transition-colors">
+            <PlayCircle size={20} />
+            <span className="font-medium text-sm">Videos</span>
           </button>
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-3 gap-1 p-1">
-        {user.posts.map(post => (
-          <div key={post.id} className="relative aspect-square cursor-pointer group overflow-hidden">
-            <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
+      {/* Masonry Grid */}
+      <div className="grid grid-cols-2 gap-3 p-3 pb-24">
+        {user.posts.map((post, idx) => (
+          <div key={post.id} className="relative aspect-[4/5] cursor-pointer group overflow-hidden rounded-2xl">
+            <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
               <p className="text-white text-xs font-bold line-clamp-2">{post.title}</p>
             </div>
           </div>
