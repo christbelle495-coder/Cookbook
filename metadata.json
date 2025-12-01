@@ -1,0 +1,5 @@
+{
+  "name": "Cookbook AI",
+  "description": "A smart recipe app powered by Gemini to discover, share, and auto-generate recipes.",
+  "requestFramePermissions": []
+}
